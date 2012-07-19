@@ -1,3 +1,6 @@
+package com.tw28;
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -5,21 +8,18 @@ import java.io.InputStreamReader;
 import static java.lang.System.exit;
 
 
-public class BooksMain extends Books {
+public class Library extends Book {
     public static int choice=0;
     public static int GetChoice() {
-        return choice;  //To change body of created methods use File | Settings | File Templates.
+        return choice;
     }
     public static void main(String[] args) throws IOException {
-        Books B = new Books();
-        String book_name = null;
+        Book B = new Book();
+        int isbn = 0,user_id=0;
         int flag;
 
 
-        //B.book_name ="The Complete Reference Java";
-        //B.author_name="Herbert Schildt";
-        //B.no_of_copies=3;
-          System.out.println("WELCOME TO PUBLIC LIBRARY SYSTEM\n");
+        System.out.println("WELCOME TO PUBLIC LIBRARY SYSTEM\n");
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
@@ -37,14 +37,16 @@ public class BooksMain extends Books {
                     break;
 
                 case 2:
-                    System.out.println("enter the book name:");
+                    System.out.println("enter the book isbn :");
                     try {
-                        book_name = reader.readLine();
+                        isbn = Integer.parseInt(reader.readLine());
+                        System.out.println("enter the book user ID:");
+                        user_id=Integer.parseInt(reader.readLine());
                     } catch (IOException e) {
                         System.out.println("Nothing was Entered, Re-try!!\t");
                     }
 
-                            flag=B.Reserve(book_name);
+                    flag=B.Reserve(isbn,user_id);
 
 
                     if(flag==1) System.out.println("\nThank You! Enjoy the book\n");
@@ -52,14 +54,14 @@ public class BooksMain extends Books {
                     break;
 
                 case 3:
-                    System.out.println("enter the book name:");
+                    System.out.println("enter the book isbn and user ID:");
                     try {
-                        book_name = reader.readLine();
+                        isbn = Integer.parseInt(reader.readLine());
                     } catch (IOException e) {
                         System.out.println("Nothing was Entered, Re-try!!\t");
                     }
 
-                    flag=B.Return(book_name);
+                    flag=B.Return(isbn);
 
 
                     if(flag==1) System.out.println("\nBook re taken successfully\n");

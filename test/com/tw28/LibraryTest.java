@@ -1,13 +1,16 @@
+package com.tw28;
+
 import org.junit.Test;
 
-public class BooksMainTest {
+public class LibraryTest {
+
     @Test
     public void ChoiceExceeded(){
-        assert(BooksMain.GetChoice()>5);
+        assert(Library.GetChoice()>5);
     }
 
     @Test
     public void ChoiceInvalid(){
-        assert(BooksMain.GetChoice()<0);
+        assert(Library.GetChoice()<0);
     }
 }
