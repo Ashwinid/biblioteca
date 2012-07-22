@@ -11,7 +11,7 @@ public class Borrower implements BookInterface,UserInterface {
     public boolean store(int user,int isbn) throws IOException {
      for(int i=0;i<3;i++)
      {
-     if(UserInterface.user_id[i]==user)
+     if(UserInterface.User_id[i]==user)
      {user_id=user; flag=1;
        break;
      }

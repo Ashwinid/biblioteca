@@ -1,5 +1,4 @@
 package com.tw28;
-enum reserved {yes, no, YES, NO}
 
 public interface BookInterface {
     public static int isbn[]=new int[]{56343,56342,56344,56340,56341};
