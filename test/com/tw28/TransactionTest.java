@@ -4,11 +4,14 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class BorrowerTest {
+import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
+
+public class TransactionTest {
     @Test
     public void storeTestInvalidIsbn() {
         try {
-            assert(new Borrower().store(1111111,123));
+            assertFalse(new Transaction().store(1111111, 123));
         } catch (IOException e) {
             System.out.println("Invalid data");
         }
@@ -17,7 +20,7 @@ public class BorrowerTest {
     @Test
     public void storeTestInvalidUserId() {
         try {
-            assert(new Borrower().store(123,56342));
+            assertFalse(new Transaction().store(123, 56342));
         } catch (IOException e) {
             System.out.println("Invalid data");
         }
@@ -25,7 +28,7 @@ public class BorrowerTest {
     @Test
     public void storeTestValid() throws IOException {
 
-            assert(new Borrower().store(1111112,56343));
+            assertTrue(new Transaction().store(1111112, 56343));
 
 }
     }

@@ -3,51 +3,65 @@ package com.tw28;
 
 import java.io.IOException;
 
-public class Book extends Borrower implements BookInterface {
+public class Book {
+        private  int isbn;
+        private   String book_name;
+        private  String author_name;
+        private  reserved r;
 
-    public  String GetName(int i) {
-        return book_name[i];
-    }
 
-    public  String GetAuthorName(int i) {
-        return author_name[i];
-    }
-    public  int GetIsbn(int i){
-        return isbn[i];
-    }
 
-    public  reserved GetReserveStatus(int i){
-        return r[i];
-    }
-
-    public  void Display()
+    public void add(int i,String book_name,String author_name, reserved status)
     {
-        System.out.println("ISBN\t\t\t\t\t\tName\t\t\t\t\t\tAuthor");
-        for(int i=0;i<5;i++)
-            System.out.println(book_name[i]+"\t\t\t\t\t\t"+author_name[i]+"\n");
+        isbn =i;
+       this.book_name=book_name;
+        this.author_name= author_name;
+        r= status;
+
     }
 
-    public  int Return(int x)   {
+    public  int Return(int isbn)   {
         for(int i=0;i<5;i++){
-            if(isbn[i] == x)    {
-                r[i]=reserved.no;
+            if(this.isbn == isbn)    {
+                r=reserved.no;
                 return 1;
             }   }
         return 0;
     }
 
 
-    public int Reserve(int x,int user_id) throws IOException {
+    public int Reserve(int isbn,int user_id) throws IOException {
         for(int i=0;i<5;i++){
-            if( (isbn[i] == x) && (r[i] == reserved.no) && store(user_id, x)) {
-                 r[i]=reserved.no;
+            if( (this.isbn == isbn) && (r == reserved.no) && new Library().store(user_id, isbn)) {
+                 r=reserved.no;
                 return 1;
             } }
         return 0;
     }
 
 
+    public void display() {
+       System.out.println(isbn+" -->> "+book_name+" -->> "+ author_name+" -->> "+ r);
+    }
 
+
+
+    public boolean checkIsbn(int uid) {
+
+        if(isbn%56000<999) // Checking if the ISBN is valid i.e, within range 56000-56999
+        {
+        for(int i=1;i<=3;i++)
+            if( this.isbn== uid)
+            {
+                return true;
+
+            }
+        }
+        else
+        System.out.println("Invalid ISBN!!!!");
+
+        return false;
+    }
 
 }
 
